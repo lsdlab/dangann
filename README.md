@@ -1,7 +1,7 @@
 # awesome_coffice
 ![Language](https://img.shields.io/badge/language-Python-blue.svg?style=flat-square) ![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)
 
-Work in coffee shop social app's backend and web frontend(WIP)
+AwesomeCoffice 微信小程序的 Django 后端 API，djangorestframework 和 JWT 加持。
 
 ## requirement.txt
 
