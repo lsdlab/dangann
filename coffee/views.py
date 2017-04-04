@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.core import serializers
 from django.http import JsonResponse
 import simplejson
+from random import randint
 
 from .models import Spot, Comment
 from user.models import User
@@ -45,6 +46,7 @@ def spots(request):
                     longitude = request.POST.get('longitude'),
                     latitude = request.POST.get('latitude'),
                     download_speed = request.POST.get('download_speed'),
+                    upload_speed = request.POST.get('upload_speed'),
                     speed_test_link = request.POST.get('speed_test_link'),
                     price_indication = request.POST.get('price_indication'),
                     bathroom = bathroom,
@@ -111,6 +113,7 @@ def comments(request):
                     comment_message = request.POST.get('comment_message'),
                     comment_user_id = request.POST.get('comment_user_id'),
                     comment_user_name = request.POST.get('comment_user_name'),
+                    comment_user_avatarurl = request.POST.get('comment_user_avatarurl'),
                     comment_mark = request.POST.get('comment_mark'))
         comment.save()
         serializer = CommentSerializer(comment)
@@ -142,5 +145,30 @@ def all_user_spot_list(request, pk):
         all_user_spot_list = user.spot_set.all().order_by('-id')
         serializer = CommentSerializer(all_user_spot_list, many=True)
         return Response(serializer.data)
+
+
+@api_view(['GET'])
+def random_spots(request):
+    if request.method == 'GET':
+        last = Spot.objects.count() - 1
+        index1 = randint(0, last)
+        index2 = randint(0, last - 1)
+        if index2 == index1:
+            index2 = last
+        spots1 = Spot.objects.all()[index1]
+        spots2 = Spot.objects.all()[index2]
+
+        last2 = Spot.objects.count() - 4
+        index3 = randint(0, last)
+        index4 = randint(0, last - 1)
+        if index4 == index3:
+            index4 = last2
+        spots3 = Spot.objects.all()[index3]
+        spots4 = Spot.objects.all()[index4]
+
+        spots = [spots1, spots2, spots3, spots4]
+        serializer = SpotsSerializer(spots, many=True)
+        return Response(serializer.data)
+
 
 

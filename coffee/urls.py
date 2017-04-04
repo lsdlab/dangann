@@ -29,4 +29,5 @@ urlpatterns = [
     url(r'^api/v1/comments/(?P<pk>[0-9]+)/$', views.comment_detail, name="comment_detail"),
     url(r'^api/v1/user_spot_list/(?P<pk>[0-9]+)/$', views.user_spot_list, name="user_spot_list"),
     url(r'^api/v1/all_user_spot_list/(?P<pk>[0-9]+)/$', views.all_user_spot_list, name="all_user_spot_list"),
+    url(r'^api/v1/random_spots/$', views.random_spots, name="random_spots"),
 ]
