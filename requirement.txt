@@ -1,5 +1,5 @@
 # Django
-Django==1.10.6
+Django==1.11
 
 # auth middleware
 django-simple-captcha==0.5.3
