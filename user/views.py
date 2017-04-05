@@ -69,10 +69,9 @@ def signup_view(request):
                 login(request, user)
                 messages.success(request, '注册成功！')
                 return HttpResponseRedirect('/')
-
+        return render(request, 'user/signup.html', {'form': form})
     else:
-        form = SignupForm
-    return render(request, 'user/signup.html', {'form': form})
+        return render(request, 'user/signup.html')
 
 
 @login_required
