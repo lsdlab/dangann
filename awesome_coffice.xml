@@ -1,5 +1,5 @@
 <uwsgi>
-    <socket>45.55.9.229:8001</socket>
+    <socket>104.236.180.35:8001</socket>
     <chdir>/home/chen/awesome_coffice</chdir>
     <module>awesome_coffice</module>
     <processes>4</processes>
