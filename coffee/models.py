@@ -11,9 +11,9 @@ class Spot(models.Model):
   longitude = models.FloatField()
   latitude = models.FloatField()
 
-  download_speed = models.CharField(max_length=70, null=True, blank=True)
-  upload_speed = models.CharField(max_length=70, null=True, blank=True)
-  speed_test_link = models.URLField(max_length=100, null=True, blank=True)
+  download_speed = models.CharField(max_length=70, null=True, blank=True, default='')
+  upload_speed = models.CharField(max_length=70, null=True, blank=True, default='')
+  speed_test_link = models.URLField(max_length=100, null=True, blank=True, default='')
   price_indication = models.CharField(max_length=70, null=True, blank=True, default='')
   bathroom = models.BooleanField(default=False)
 
@@ -36,3 +36,5 @@ class Comment(models.Model):
   comment_mark = models.CharField(max_length=10, default='comment', null=True, blank=True)
   comment_user_avatarurl = models.URLField(max_length=200, null=True, blank=True)
 
+  def __str__(self):
+      return self.comment_message
