@@ -8,35 +8,13 @@ from captcha.fields import CaptchaField
 from .models import User
 
 
-class LoginForm(forms.ModelForm):
-    email = forms.EmailField(label='邮箱', required=True)
-    password = forms.CharField(widget=forms.PasswordInput(),
-                               label='密码',
-                               required=True)
-
-    class Meta:
-        model = User
-        fields = ('email', 'password')
-        fields_order = ('email', 'password')
-
 class SignupForm(forms.ModelForm):
     captcha = CaptchaField(label='验证码', required=True)
-    email = forms.EmailField(label='邮箱', required=True)
-    password = forms.CharField(widget=forms.PasswordInput(),
-                               label='密码',
-                               required=True,
-                               validators=[MinLengthValidator(8, message="密码过短")])
 
     class Meta:
         model = User
         fields = ('email', 'password', 'captcha')
         fields_order = ('email', 'password', 'captcha')
-
-    def clean_password(self):
-        password = self.cleaned_data['password']
-        if len(password) < 8:
-            raise forms.ValidationError('密码长度不能小于 8 个字符！')
-        return password
 
 class UserProfileForm(forms.ModelForm):
     email = forms.EmailField(label='邮箱', required=True)

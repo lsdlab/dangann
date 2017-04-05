@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
-from .forms import LoginForm, SignupForm, UserProfileForm, AvatarForm
+from .forms import SignupForm, AvatarForm
 from .models import User
 from django.http import JsonResponse
 
@@ -42,8 +42,7 @@ def login_view(request):
             return HttpResponseRedirect('/')
         else:
             messages.warning(request, '邮箱或者密码错误，请重新输入！')
-            form = LoginForm(data=request.POST)
-            return render(request, 'user/login.html', {'form': form})
+            return render(request, 'user/login.html', {})
     else:
         return render(request, 'user/login.html', {})
 
@@ -69,9 +68,11 @@ def signup_view(request):
                 login(request, user)
                 messages.success(request, '注册成功！')
                 return HttpResponseRedirect('/')
-        return render(request, 'user/signup.html', {'form': form})
+            else:
+                return render(request, 'user/signup.html', {'form': form})
     else:
-        return render(request, 'user/signup.html')
+        form = SignupForm()
+        return render(request, 'user/signup.html', {'form': form})
 
 
 @login_required
