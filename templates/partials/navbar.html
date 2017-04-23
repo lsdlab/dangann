@@ -8,13 +8,25 @@
 
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
-      <li {% if title == 'index' %} class="nav-item active" {% else %} class="nav-item" {% endif %}>
-        <a href="/" class="nav-link">首页</a>
-      </li>
-
       <li {% if title == 'spots' %} class="nav-item active" {% else %} class="nav-item" {% endif %}>
-        <a href="/spots/" class="nav-link">地点</a>
+        <a href="/spots/" class="nav-link">Spots</a>
       </li>
+      <li {% if title == 'interviews' %} class="nav-item active" {% else %} class="nav-item" {% endif %}>
+        <a href="/interviews/" class="nav-link">Interviews</a>
+      </li>
+      <li {% if title == 'forum' %} class="nav-item active" {% else %} class="nav-item" {% endif %}>
+        <a href="/forum/" class="nav-link">Forum</a>
+      </li>
+      <li {% if title == 'blog' %} class="nav-item active" {% else %} class="nav-item" {% endif %}>
+        <a href="/blog/" class="nav-link">Blog</a>
+      </li>
+      <li {% if title == 'faq' %} class="nav-item active" {% else %} class="nav-item" {% endif %}>
+        <a href="/faq/" class="nav-link">FAQ</a>
+      </li>
+      <li {% if title == 'about' %} class="nav-item active" {% else %} class="nav-item" {% endif %}>
+        <a href="/about/" class="nav-link">About</a>
+      </li>
+      <!-- <a href="/subscribe/" class="btn btn-outline-info mr10"><span class="fa fa-sign-in mr5"></span>SUBSCRIBE</a> -->
     </ul>
 
 
@@ -32,6 +44,7 @@
       </ul>
     {% else %}
       <ul class="navbar-nav">
+        <a href="/subscribe/" class="btn btn-outline-info mr10"><span class="fa fa-envelope-o mr5"></span>SUBSCRIBE</a>
         <a href="{% url 'user:login' %}" class="btn btn-outline-success mr10"><span class="fa fa-sign-in mr5"></span>登录</a>
         <a href="{% url 'user:signup' %}" class="btn btn-outline-success"><span class="fa fa-user-plus mr5"></span>注册</a>
       </ul>

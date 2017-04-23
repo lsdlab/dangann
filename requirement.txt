@@ -1,5 +1,5 @@
 # Django
-Django==1.10
+Django==1.11
 
 # auth middleware
 django-simple-captcha==0.5.5
@@ -27,8 +27,10 @@ django-extensions==1.7.8
 # redis
 redis==2.10.5
 
-# job queue
-rq==0.7.1
+# job queues and job scheduling
+django-crontab==0.7.1
+celery==4.0.2
+django-rq==0.9.5
 schedule==0.4.2
 
 # django-activity-stream

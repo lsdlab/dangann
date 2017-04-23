@@ -4,57 +4,36 @@
     awesomecoffice | 地点
 {% endblock %}
 
+{% load static %}
+{% block head %}
+  <link rel="stylesheet" href="{% static "js/datatables/dataTables.bootstrap4.min.css" %}">
+  <script src="{% static "js/datatables/jquery.dataTables.min.js" %}"></script>
+  <script src="{% static "js/datatables/dataTables.bootstrap4.min.js" %}"></script>
+{% endblock %}
+
 {% block content %}
-  <div class="container mt20">
+  <div class="container mt20" hidden="">
     {% include "partials/flash.html" %}
   </div>
 
   <div class="container mt40" style="margin-bottom: 100px">
-    <div class="page-header mb20">
-      <h1 class="mb10">所有地点<small>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp数据来自 <a href="https://github.com/ElaWorkshop/awesome-cn-cafe">ElaWorkshop/awesome-cn-cafe</a></small></h1>
-    </div>
-
-    <div class="datatable mb10">
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>城市</th>
-            <th>名称</th>
-            <th>下载速度</th>
-            <th>参考价格</th>
-            <th>提交者</th>
-            <th>评论</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for spot in spots %}
-            <tr>
-              <td>{{ spot.id }}</td>
-              <td>{{ spot.city }}</td>
-              <td>{{ spot.name }}</td>
-              <td>{{ spot.download_speed }}</td>
-              <td>{{ spot.price_indication }}</td>
-              <td>{{ spot.commit_user_name }}</td>
-              <td>{{ spot.commit_message }}</td>
-            </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
-
-    <div class="card text-center" hidden>
-      <h3 class="card-header">可视化 - 表格<small>     全部数据</small></h3>
+    <div class="card">
+      <h3 class="card-header text-center">所有地点<small>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp数据来自 <a href="https://github.com/ElaWorkshop/awesome-cn-cafe">ElaWorkshop/awesome-cn-cafe</a></small></h3>
       <div class="card-block">
-        <h4 class="card-title">Special title treatment</h4>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+        <div class="text-center">
+          <a href="/new_spot/" class="btn btn-primary mr10 mb20"><span class="fa fa-map-marker mr5"></span>提交新地点</a>
+        </div>
+        <div>
+          <table id="alldata-table" class="table table-bordered mb10 datatable" cellspacing="0" width="100%"></table>
+        </div>
+        <div class="container datatable-notify" hidden="">
+          <p class="mt5">请在桌面浏览器或 iPad 浏览器上查看表格以获得最佳体验。</p>
+        </div>
       </div>
       <div class="card-footer text-muted">
-        2 days ago
+
       </div>
     </div>
-
   </div>
 
 {% endblock %}
@@ -62,6 +41,63 @@
 
 {% block pagejs %}
   <script>
-
+    NProgress.start()
+    $.getJSON('/api/v1/spots/?format=json', function(rsp) {
+      if (rsp) {
+        var dataSet = rsp
+      }
+      $('#alldata-table').DataTable({
+        'data': dataSet,
+        'columns': [{
+          'data': 'id',
+          'title': '#'
+        }, {
+          'data': 'city',
+          'title': '城市'
+        }, {
+          'data': 'name',
+          'title': '名称'
+        }, {
+          'data': 'download_speed',
+          'title': '下载速度'
+        }, {
+          'data': 'price_indication',
+          'title': '参考价格'
+        }, {
+          'data': 'commit_user_name',
+          'title': '提交者'
+        }, {
+          'data': 'commit_message',
+          'title': '评论'
+        }],
+        'autoWidth': true,
+        'paging': true,
+        'ordering': false,
+        'info': true,
+        'searching': true,
+        'lengthMenu': [
+          [20, 50, 100, -1],
+          [20, 50, 100, '全部']
+        ],
+        'language': {
+          'lengthMenu': '每页 _MENU_ 条记录',
+          'zeroRecords': '没有找到',
+          'info': '第 _PAGE_ 页，共 _PAGES_ 页',
+          'infoEmpty': '没有记录',
+          'infoFiltered': '(从 _MAX_ 条记录中过滤)',
+          'search': '搜索：',
+          'emptyTable': '这张表中没有数据',
+          'loadingRecords': '加载中...',
+          'processing': '处理中...',
+          'paginate': {
+            'first': '第一页',
+            'last': '末页',
+            'next': '下一页',
+            'previous': '上一页'
+          }
+        }
+      })
+    })
+    NProgress.done()
   </script>
 {% endblock %}

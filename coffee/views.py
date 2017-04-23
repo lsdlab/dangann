@@ -9,23 +9,32 @@ from user.models import User
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from coffee.serializers import CitySpotListSerializer, SpotsSerializer, CommentSerializer
+from coffee.serializers import SpotsDatatableSerializer, CitySpotsListSerializer, SpotsSerializer, CommentSerializer
 
 # Create your views here.
 
+# HTML views
 def index(request):
     return render(request, 'coffee/index.html', {'title': 'index'})
 
 
 def spots_view(request):
-    return render(request, 'coffee/spots.html', {'title': 'spots', 'spots': Spot.objects.all().order_by('-id')})
+    return render(request, 'coffee/spots.html', {'title': 'spots'})
 
 
+def new_spot(request):
+    return render(request, 'coffee/new_spot.html', {'title': 'spots'})
+
+
+
+
+
+# API views
 @api_view(['GET'])
 def city_spot_list(request, city):
     if request.method == 'GET':
         city_spot_list = Spot.objects.filter(city=city).order_by('-id')
-        serializer = CitySpotListSerializer(city_spot_list, many=True)
+        serializer = CitySpotsListSerializer(city_spot_list, many=True)
         return Response(serializer.data)
 
 
@@ -33,7 +42,7 @@ def city_spot_list(request, city):
 def spots(request):
     if request.method == 'GET':
         spots = Spot.objects.all().order_by('-id')
-        serializer = SpotsSerializer(spots, many=True)
+        serializer = SpotsDatatableSerializer(spots, many=True)
         return Response(serializer.data)
     elif request.method == 'POST':
         if request.POST.get('bathroom') == "1":

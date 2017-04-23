@@ -3,7 +3,13 @@ from .models import Spot, Comment
 from rest_framework import serializers
 
 
-class CitySpotListSerializer(serializers.ModelSerializer):
+class SpotsDatatableSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Spot
+        fields = ('id', 'city', 'name', 'download_speed', 'price_indication', 'commit_user_name', 'commit_message')
+
+
+class CitySpotsListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Spot
         fields = ('id', 'city', 'name', 'commit_user_name', 'commit_message')

@@ -169,6 +169,12 @@ div.alert ul {
 }
 
 .datatable th {
-  width: 52px;
+  width: 45px;
+}
+
+@media (min-width: 768px) {
+  .datatable-notify {
+    display: none;
+  }
 }
 
