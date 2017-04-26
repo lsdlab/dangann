@@ -3,5 +3,5 @@
     <chdir>/home/chen/awesome_coffice</chdir>
     <module>awesome_coffice</module>
     <processes>4</processes>
-    <daemonize>/home/chen/awesome_coffice/uwsgi.log</daemonize>
+    <daemonize>/home/chen/awesome_coffice_logs/uwsgi.log</daemonize>
 </uwsgi>
