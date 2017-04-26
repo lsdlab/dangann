@@ -196,42 +196,26 @@ LOGIN_URL = '/login/'
 
 RQ_QUEUES = {
     'default': {
-        'URL': 'redis://localhost:6379/0',
-        'DB': 0,
-        'DEFAULT_TIMEOUT': 360,
+        'URL': 'redis://localhost:6379/1',
+        'DEFAULT_TIMEOUT': 300,
     },
     'high': {
-        'URL': 'redis://localhost:6379/0',
-        'DB': 0,
-        'DEFAULT_TIMEOUT': 360,
+        'URL': 'redis://localhost:6379/1',
+        'DEFAULT_TIMEOUT': 300,
     },
     'low': {
-        'URL': 'redis://localhost:6379/0',
-        'DB': 0,
-        'DEFAULT_TIMEOUT': 360,
+        'URL': 'redis://localhost:6379/1',
+        'DEFAULT_TIMEOUT': 300,
     }
 }
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'filters': {
-        'require_debug_false': {
-            '()': 'django.utils.log.RequireDebugFalse'
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://localhost:6379/1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
-    },
-    'handlers': {
-        'mail_admins': {
-            'level': 'ERROR',
-            'filters': ['require_debug_false'],
-            'class': 'django.utils.log.AdminEmailHandler'
-        }
-    },
-    'loggers': {
-        'django.request': {
-            'handlers': ['mail_admins'],
-            'level': 'ERROR',
-            'propagate': True,
-        },
     }
 }

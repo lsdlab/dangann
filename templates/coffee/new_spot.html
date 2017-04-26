@@ -1,0 +1,32 @@
+{% extends "partials/base.html" %}
+
+{% block title %}
+    提交新地点
+{% endblock %}
+
+{% load static %}
+{% block head %}
+  <link rel="stylesheet" href="{% static "css/datatables/dataTables.bootstrap4.min.css" %}">
+  <script src="{% static "js/datatables/jquery.dataTables.min.js" %}"></script>
+  <script src="{% static "js/datatables/dataTables.bootstrap4.min.js" %}"></script>
+{% endblock %}
+
+{% block content %}
+  <div class="container mt20" hidden="">
+    {% include "partials/flash.html" %}
+  </div>
+
+  <div class="container mt30" style="margin-bottom: 100px">
+
+  </div>
+
+{% endblock %}
+
+
+{% block pagejs %}
+  <script>
+    NProgress.start()
+
+    NProgress.done()
+  </script>
+{% endblock %}
