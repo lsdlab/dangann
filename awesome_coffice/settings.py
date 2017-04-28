@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_extensions',
     'debug_toolbar',
+    'livereload',
     'django_rq',
 ]
 
@@ -78,6 +79,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'livereload.middleware.LiveReloadScript',
 ]
 
 DEBUG_TOOLBAR_PANELS = [

@@ -1,7 +1,7 @@
 <uwsgi>
-    <socket>104.236.180.35:8001</socket>
-    <chdir>/home/chen/awesome_coffice</chdir>
-    <module>awesome_coffice</module>
+    <socket>0.0.0.0:8001</socket>
+    <chdir>/home/chen/awesome_coffice/awesome_coffice</chdir>
+    <module>wsgi</module>
     <processes>4</processes>
     <daemonize>/home/chen/awesome_coffice_logs/uwsgi.log</daemonize>
 </uwsgi>
