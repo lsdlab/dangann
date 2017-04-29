@@ -10,14 +10,14 @@ router = routers.DefaultRouter()
 
 app_name = 'coffice'
 urlpatterns = [
+    # HTML views URL
+    url(r'^coffice/$', views.spots_view, name='spots'),
+    url(r'^new_coffice/$', views.new_spot, name='new_spot'),
+    # API URL
     url(r'^', include(router.urls)),
     url(r'^api/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^api-token-auth/', obtain_jwt_token),
     url(r'^api-token-refresh/', refresh_jwt_token),
-    url(r'^coffice/$', views.spots_view, name='spots'),
-    url(r'^new_coffice/$', views.new_spot, name='new_spot'),
-
-    # API URL
     url(r'^api/v1/city_spot_list/(?P<city>\w+)/$', views.city_spot_list, name="city_spot_list"),
     url(r'^api/v1/spots/$', views.spots, name="spots"),
     url(r'^api/v1/spots/(?P<pk>[0-9]+)/$', views.spot_detail, name="spot_detail"),
