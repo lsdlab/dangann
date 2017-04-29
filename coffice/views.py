@@ -9,21 +9,21 @@ from user.models import User
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from coffee.serializers import SpotsDatatableSerializer, CitySpotsListSerializer, SpotsSerializer, CommentSerializer
+from coffice.serializers import SpotsDatatableSerializer, CitySpotsListSerializer, SpotsSerializer, CommentSerializer
 
 # Create your views here.
 
 # HTML views
 def index(request):
-    return render(request, 'coffee/index.html', {'title': 'index'})
+    return render(request, 'coffice/index.html', {'title': 'index'})
 
 
 def spots_view(request):
-    return render(request, 'coffee/spots.html', {'title': 'spots'})
+    return render(request, 'coffice/spots.html', {'title': 'spots'})
 
 
 def new_spot(request):
-    return render(request, 'coffee/new_spot.html', {'title': 'spots'})
+    return render(request, 'coffice/new_spot.html', {'title': 'spots'})
 
 
 
