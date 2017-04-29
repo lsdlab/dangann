@@ -41,7 +41,6 @@ schedule==0.4.2
 django-activity-stream==0.6.3
 
 # utils
-fuzzywuzzy==0.15.0
 requests==2.13.0
 simplejson==3.10.0
 VerbalExpressions==0.0.1

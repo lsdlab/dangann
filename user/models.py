@@ -27,7 +27,7 @@ class User(AbstractUser):
     last_login_ip = models.GenericIPAddressField(unpack_ipv4=True, null=True, blank=True)
     ip_joined = models.GenericIPAddressField(unpack_ipv4=True, null=True, blank=True)
 
-    client_mark = models.CharField(max_length=10, default='weixin', null=True, blank=True)
+    client_mark = models.CharField(max_length=10, default='web', null=True, blank=True)
 
     weixin_nickName = models.CharField(max_length=50, null=True, blank=True)
     weixin_avatarUrl = models.URLField(max_length=200, null=True, blank=True)
