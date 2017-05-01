@@ -76,6 +76,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'debug_toolbar',
     'django_rq',
+    'django_nose',
     'django_celery_beat',
     'django_celery_results',
 ]
@@ -92,6 +93,10 @@ REST_FRAMEWORK = {
     # ),
     'PAGE_SIZE': 200
 }
+
+
+# django-nose settings
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
 
 MIDDLEWARE = [
