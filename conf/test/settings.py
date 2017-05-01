@@ -1,11 +1,28 @@
-from __future__ import absolute_import, unicode_literals
-# CELERY STUFF
-BROKER_URL = 'redis://localhost:6379/1'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379/1'
-CELERY_ACCEPT_CONTENT = ['application/json']
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_SERIALIZER = 'json'
-CELERY_TIMEZONE = 'Asia/Shanghai'
+# -*- coding: utf-8 -*-
+
+"""
+     _____  _   _   ____  _  __
+    |  ___|| | | | / ___|| |/ /
+    | |_   | | | || |    | ' /
+    |  _|  | |_| || |___ | . \
+    |_|     \___/  \____||_|\_\
+
+     _____ __     __ _____  ____ __   __ ____    ___   ____ __   __
+    | ____|\ \   / /| ____||  _ \\ \ / /| __ )  / _ \ |  _ \\ \ / /
+    |  _|   \ \ / / |  _|  | |_) |\ V / |  _ \ | | | || | | |\ V /
+    | |___   \ V /  | |___ |  _ <  | |  | |_) || |_| || |_| | | |
+    |_____|   \_/   |_____||_| \_\ |_|  |____/  \___/ |____/  |_|
+
+
+    (c) Copyright BreakWire Lab 2017 All Rights Reserved
+    ---------------------------------------------------------------------------
+    File Name    : settings.py
+    Description  : development settings.py
+    Author       : Chen Jian
+    Gmail        : lsdvincent@gmail.com
+    GitHub       : http://github.com/lsdlab/dangann
+  -----------------------------------------------------------------------------
+"""
 
 
 """
@@ -59,6 +76,8 @@ INSTALLED_APPS = [
     'django_extensions',
     'debug_toolbar',
     'django_rq',
+    'django_celery_beat',
+    'django_celery_results',
 ]
 
 
@@ -202,6 +221,18 @@ LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/login/'
 
 
+# celery settings
+BROKER_URL = 'redis://localhost:6379/1'
+# redis result backend
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/1'
+# database result backend, use django-celery-results
+# CELERY_RESULT_BACKEND = 'django-db'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Asia/Shanghai'
+
+# django-rq settings
 RQ_QUEUES = {
     'default': {
         'URL': 'redis://localhost:6379/1',
@@ -217,7 +248,7 @@ RQ_QUEUES = {
     }
 }
 
-
+# django-redis settings
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
@@ -227,3 +258,5 @@ CACHES = {
         }
     }
 }
+
+REDIS_TIMEOUT = 24 * 60 * 60

@@ -4,9 +4,14 @@ from rest_framework import serializers
 
 
 class SpotsDatatableSerializer(serializers.ModelSerializer):
+    google_map_link = serializers.SerializerMethodField('get_full_position')
+
+    def get_full_position(self, obj):
+        return 'http://maps.google.com/?q={},{}'.format(obj.latitude, obj.longitude)
+
     class Meta:
         model = Spot
-        fields = ('id', 'city', 'name', 'download_speed', 'price_indication', 'commit_user_name', 'commit_message')
+        fields = ('id', 'city', 'name', 'download_speed', 'price_indication', 'commit_user_name', 'commit_message', 'google_map_link')
 
 
 class CitySpotsListSerializer(serializers.ModelSerializer):

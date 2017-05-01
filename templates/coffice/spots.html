@@ -55,6 +55,9 @@
           'data': 'name',
           'title': '名称'
         }, {
+          'data': 'google_map_link',
+          'title': 'google_map_link'
+        }, {
           'data': 'download_speed',
           'title': '下载速度'
         }, {
@@ -67,6 +70,26 @@
           'data': 'commit_message',
           'title': '评论'
         }],
+        "columnDefs": [
+            {
+                "render": function ( data, type, row ) {
+                    if(type === 'display'){
+                       return $('<a>')
+                          .attr('href', row['google_map_link'])
+                          .attr('target','_blank')
+                          .text(data)
+                          .wrap('<div></div>')
+                          .parent()
+                          .html();
+
+                    } else {
+                       return data;
+                    }
+                },
+                "targets": 2
+            },
+            { "visible": false,  "targets": [ 3 ] }
+        ],
         'autoWidth': true,
         'paging': true,
         'ordering': false,

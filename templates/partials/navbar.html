@@ -20,6 +20,9 @@
       <li {% if title == 'blog' %} class="nav-item active" {% else %} class="nav-item" {% endif %}>
         <a href="/blog/" class="nav-link">Blog</a>
       </li>
+      <li {% if title == 'submit' %} class="nav-item active" {% else %} class="nav-item" {% endif %}>
+        <a href="/submit/" class="nav-link">Submit</a>
+      </li>
       <li {% if title == 'faq' %} class="nav-item active" {% else %} class="nav-item" {% endif %}>
         <a href="/faq/" class="nav-link">FAQ</a>
       </li>
@@ -29,6 +32,7 @@
 
     {% if user.is_authenticated %}
       <ul class="navbar-nav">
+        <a href="/subscribe/" class="btn btn-outline-info mr10"><span class="fa fa-envelope-o mr5"></span>SUBSCRIBE</a>
         <li {% if title == 'account' %} class="nav-item active dropdown" {% else %} class="nav-item dropdown" {% endif %}>
           <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
                                     src="{{ user.avatar_thumbnail.url }}" alt=""
