@@ -24,8 +24,12 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.index, name='index'),
     url(r'^', include('user.urls')),
+    url(r'^captcha/', include('captcha.urls')),
     url(r'^', include('coffice.urls')),
-    url(r'^captcha/', include('captcha.urls'))
+    url(r'^', include('articles.urls')),
+    url(r'^submit/', views.submit, name='submit'),
+    url(r'^faq/', views.faq, name='faq'),
+    url(r'^subscribe/', views.subscribe, name='subscribe'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

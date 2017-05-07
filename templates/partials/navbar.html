@@ -1,24 +1,15 @@
-<nav class="navbar navbar-inverse bg-inverse navbar-toggleable-md fixed-top">
+<nav class="navbar navbar-inverse bg-inverse navbar-toggleable-md">
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <a class="navbar-brand ml10" href="/">
+  <a class="navbar-brand ml20" href="/">
     <span class="mr5"><i class="fa fa-coffee" aria-hidden="true" style=""></i></span> dangann.com
   </a>
 
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
-      <li {% if title == 'spots' %} class="nav-item active" {% else %} class="nav-item" {% endif %}>
-        <a href="/coffice/" class="nav-link">Coffice</a>
-      </li>
-      <li {% if title == 'interviews' %} class="nav-item active" {% else %} class="nav-item" {% endif %}>
-        <a href="/interviews/" class="nav-link">Interviews</a>
-      </li>
-      <li {% if title == 'forum' %} class="nav-item active" {% else %} class="nav-item" {% endif %}>
-        <a href="/forum/" class="nav-link">Forum</a>
-      </li>
-      <li {% if title == 'blog' %} class="nav-item active" {% else %} class="nav-item" {% endif %}>
-        <a href="/blog/" class="nav-link">Blog</a>
+      <li {% if title == 'articles' %} class="nav-item active" {% else %} class="nav-item" {% endif %}>
+        <a href="/articles/" class="nav-link">Articles</a>
       </li>
       <li {% if title == 'submit' %} class="nav-item active" {% else %} class="nav-item" {% endif %}>
         <a href="/submit/" class="nav-link">Submit</a>
@@ -26,11 +17,14 @@
       <li {% if title == 'faq' %} class="nav-item active" {% else %} class="nav-item" {% endif %}>
         <a href="/faq/" class="nav-link">FAQ</a>
       </li>
-      <!-- <a href="/subscribe/" class="btn btn-outline-info mr10"><span class="fa fa-sign-in mr5"></span>SUBSCRIBE</a> -->
     </ul>
 
 
-    {% if user.is_authenticated %}
+    <ul class="navbar-nav mr20">
+      <a href="/subscribe/" class="btn btn-outline-info mr10"><span class="fa fa-envelope-o mr5"></span>SUBSCRIBE</a>
+    </ul>
+
+    <!-- {% if user.is_authenticated %}
       <ul class="navbar-nav">
         <a href="/subscribe/" class="btn btn-outline-info mr10"><span class="fa fa-envelope-o mr5"></span>SUBSCRIBE</a>
         <li {% if title == 'account' %} class="nav-item active dropdown" {% else %} class="nav-item dropdown" {% endif %}>
@@ -49,6 +43,6 @@
         <a href="{% url 'user:login' %}" class="btn btn-outline-success mr10"><span class="fa fa-sign-in mr5"></span>登录</a>
         <a href="{% url 'user:signup' %}" class="btn btn-outline-success"><span class="fa fa-user-plus mr5"></span>注册</a>
       </ul>
-    {% endif %}
+    {% endif %} -->
   </div>
 </nav>

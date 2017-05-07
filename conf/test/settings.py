@@ -67,16 +67,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'user',
     'coffice',
-    'interviews',
-    'forum',
-    'blog',
+    'articles',
     'captcha',
     'imagekit',
     'rest_framework',
     'django_extensions',
     'debug_toolbar',
     'django_rq',
-    'django_nose',
     'django_celery_beat',
     'django_celery_results',
 ]
@@ -125,7 +122,7 @@ DEBUG_TOOLBAR_PANELS = [
     'debug_toolbar.panels.logging.LoggingPanel',
     'debug_toolbar.panels.redirects.RedirectsPanel',
 ]
-INTERNAL_IPS = ('0.0.0.0')
+INTERNAL_IPS = ('127.0.0.1')
 DEBUG_TOOLBAR_CONFIG = {  'JQUERY_URL' : r"http://code.jquery.com/jquery-2.1.1.min.js"}
 
 

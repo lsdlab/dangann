@@ -18,15 +18,26 @@ def index(request):
     return render(request, 'coffice/index.html', {'title': 'index'})
 
 
+def submit(request):
+    return render(request, 'static_page/submit.html', {'title': 'submit'})
+
+
+def faq(request):
+    if request.method == 'GET':
+        return render(request, 'static_page/faq.html', {'title': 'faq'})
+    else:
+        pass
+
+def subscribe(request):
+    if request.method == 'GET':
+        return render(request, 'static_page/subscribe.html', {'title': 'subscribe'})
+    else:
+        pass
+
+
+
 def spots_view(request):
     return render(request, 'coffice/spots.html', {'title': 'spots'})
-
-
-def new_spot(request):
-    return render(request, 'coffice/new_spot.html', {'title': 'spots'})
-
-
-
 
 
 # API views

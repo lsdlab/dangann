@@ -8,11 +8,11 @@ from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
 
 router = routers.DefaultRouter()
 
+
 app_name = 'coffice'
 urlpatterns = [
     # HTML views URL
-    url(r'^coffice/$', views.spots_view, name='spots'),
-    url(r'^new_coffice/$', views.new_spot, name='new_spot'),
+    # url(r'^coffice/$', views.spots_view, name='spots'),
     # API URL
     url(r'^', include(router.urls)),
     url(r'^api/', include('rest_framework.urls', namespace='rest_framework')),
