@@ -17,21 +17,24 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
-
+from django.conf.urls import handler404, handler500
 from coffice import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', views.index, name='index'),
     url(r'^', include('user.urls')),
     url(r'^captcha/', include('captcha.urls')),
+    url(r'^$', views.index, name='index'),
     url(r'^', include('coffice.urls')),
     url(r'^', include('articles.urls')),
     url(r'^submit/', views.submit, name='submit'),
     url(r'^faq/', views.faq, name='faq'),
     url(r'^subscribe/', views.subscribe, name='subscribe'),
+    url(r'^maintenance/', views.maintenance, name='maintenance'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
+handler404 = views.page_not_found
+handler500 = views.server_error
 
 if settings.DEBUG:
     import debug_toolbar
