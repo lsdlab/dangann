@@ -35,7 +35,6 @@ django-celery-results==1.0.1
 flower==0.9.1
 django-crontab==0.7.1
 django-rq==0.9.5
-schedule==0.4.2
 
 # django-activity-stream
 django-activity-stream==0.6.3

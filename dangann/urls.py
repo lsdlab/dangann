@@ -20,6 +20,7 @@ from django.conf.urls.static import static
 from django.conf.urls import handler404, handler500
 from coffice import views
 
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('user.urls')),
