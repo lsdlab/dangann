@@ -8,7 +8,7 @@ dandann.com 微信小程序的 Django 后端 API，djangorestframework 和 JWT �
 
 ## requirement.txt
 
-### avatar-generator need some tweek
+### avatar-generator need some tweak
 
 [avatar-generator](https://github.com/maethor/avatar-generator)
 
