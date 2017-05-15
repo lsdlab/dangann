@@ -171,9 +171,14 @@ div.alert ul {
   width: 45px;
 }
 
+@media (max-width: 768px) {
+  .alldata-table {
+    display: none
+  }
+}
+
 @media (min-width: 768px) {
   .datatable-notify {
     display: none;
   }
 }
-

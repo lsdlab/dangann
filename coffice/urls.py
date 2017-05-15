@@ -12,7 +12,7 @@ router = routers.DefaultRouter()
 app_name = 'coffice'
 urlpatterns = [
     # HTML views URL
-    # url(r'^coffice/$', views.spots_view, name='spots'),
+    url(r'^coffices/$', views.spots_view, name='spots'),
     # API URL
     url(r'^', include(router.urls)),
     url(r'^api/', include('rest_framework.urls', namespace='rest_framework')),

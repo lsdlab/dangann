@@ -10,14 +10,17 @@
     <meta name="keyword" content="自由职业, 自由职业者社区">
     <meta name="author" content="Chen Jian / Jiang Nan">
 
-    {% load static %}
-    <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" type="text/css" href="{% static "landing/css/bootstrap.min.css" %}">
+
 
     <!-- Custom Fonts -->
     <!-- <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'> -->
     <!-- <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'> -->
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600,400italic,700' rel='stylesheet' type='text/css'>
+
+
+    <!-- Bootstrap Core CSS -->
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static "landing/css/bootstrap.min.css" %}">
     <link rel="stylesheet" href="{% static "css/font-awesome.min.css" %}">
 
     <!-- Plugin CSS -->
@@ -26,14 +29,8 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="{% static "landing/css/creative.min.css" %}">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-    <link rel="stylesheet" href="{% static "css/zoom.min.css" %}">
+    <!-- zoom.js -->
+    <!-- <link rel="stylesheet" href="{% static "css/zoom.min.css" %}"> -->
 </head>
 
 <body id="page-top">
@@ -48,23 +45,25 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top">单干 - 自由职业者社区</a>
+                <a class="navbar-brand" href="/" style="color: white">
+                    <span class="mr20"></span> 单干 - 自由职业者社区
+                </a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a class="page-scroll" href="#about">About</a>
+                        <a class="page-scroll" href="#about">微信公众号</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#services">Services</a>
+                        <a class="page-scroll" href="#services">单干小雷达</a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a class="page-scroll" href="#portfolio">Portfolio</a>
-                    </li>
+                    </li> -->
                     <li>
-                        <a class="page-scroll" href="#contact">Contact</a>
+                        <a class="page-scroll" href="#contact">联系我们</a>
                     </li>
                 </ul>
             </div>
@@ -76,10 +75,11 @@
     <header>
         <div class="header-content">
             <div class="header-content-inner">
-                <h1>Your Favorite Source of Free Bootstrap Themes</h1>
+                <!-- <img src="{% static "/img/logo_circle.png" %}" width="100" height="100" style="background-color: white"> -->
+                <h1 style="margin-top: 20px">单干 - 自由职业者社区</h1>
                 <hr>
-                <p>Start Bootstrap can help you build better websites using the Bootstrap CSS framework! Just download your template and start going, no strings attached!</p>
-                <a href="#about" class="btn btn-primary btn-xl page-scroll">Find Out More</a>
+                <p style="font-weight: 600">Start Bootstrap can help you build better websites using the Bootstrap CSS framework! Just download your template and start going, no strings attached!</p>
+                <!-- <a href="#" class="btn btn-primary btn-xl page-scroll">Find Out More</a> -->
             </div>
         </div>
     </header>
@@ -88,10 +88,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <h2 class="section-heading">We've got what you need!</h2>
+                    <h2 class="section-heading">单干 - 自由职业者社区</h2>
                     <hr class="light">
                     <p class="text-faded">Start Bootstrap has everything you need to get your new website up and running in no time! All of the templates and themes on Start Bootstrap are open source, free to download, and easy to use. No strings attached!</p>
-                    <a href="#services" class="page-scroll btn btn-default btn-xl sr-button">Get Started!</a>
+                    <button id="wechat-public-account" type="button" class="btn btn-default btn-xl sr-button" data-toggle="modal" data-target="#exampleModal">
+                      微信公众号
+                    </button>
                 </div>
             </div>
         </div>
@@ -101,7 +103,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">At Your Service</h2>
+                    <h2 class="section-heading">单干小雷达</h2>
                     <hr class="primary">
                 </div>
             </div>
@@ -136,59 +138,51 @@
                         <p class="text-muted">You have to make your websites with love these days!</p>
                     </div>
                 </div>
+                <div class="col-md-12 text-center" style="margin-top: 40px">
+                  <button id="wechat-mini-app" type="button" class="btn btn-primary btn-xl sr-button" data-toggle="modal" data-target="#exampleModal">
+                    单干小雷达
+                  </button>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="no-padding" id="portfolio">
+    <!-- <section class="no-padding" id="portfolio">
         <div class="container-fluid">
             <div class="row no-gutter popup-gallery">
                 <div class="col-lg-4 col-sm-6">
-                    <img src="{% static "landing/img/portfolio/thumbnails/1.jpg" %}" class="img-responsive" alt="" data-action="zoom">
+                    <img src="{% static "landing/img/portfolio/fullsize/1.jpg" %}" class="img-responsive" alt="" data-action="zoom">
                 </div>
                 <div class="col-lg-4 col-sm-6">
-                    <img src="{% static "landing/img/portfolio/thumbnails/2.jpg" %}" class="img-responsive" alt="" data-action="zoom">
+                    <img src="{% static "landing/img/portfolio/fullsize/2.jpg" %}" class="img-responsive" alt="" data-action="zoom">
                 </div>
                 <div class="col-lg-4 col-sm-6">
-                    <img src="{% static "landing/img/portfolio/thumbnails/3.jpg" %}" class="img-responsive" alt="" data-action="zoom">
+                    <img src="{% static "landing/img/portfolio/fullsize/3.jpg" %}" class="img-responsive" alt="" data-action="zoom">
                 </div>
                 <div class="col-lg-4 col-sm-6">
-                    <img src="{% static "landing/img/portfolio/thumbnails/4.jpg" %}" class="img-responsive" alt="" data-action="zoom">
+                    <img src="{% static "landing/img/portfolio/fullsize/4.jpg" %}" class="img-responsive" alt="" data-action="zoom">
                 </div>
                 <div class="col-lg-4 col-sm-6">
-                    <img src="{% static "landing/img/portfolio/thumbnails/5.jpg" %}" class="img-responsive" alt="" data-action="zoom">
+                    <img src="{% static "landing/img/portfolio/fullsize/5.jpg" %}" class="img-responsive" alt="" data-action="zoom">
                 </div>
                 <div class="col-lg-4 col-sm-6">
-                    <img src="{% static "landing/img/portfolio/thumbnails/6.jpg" %}" class="img-responsive" alt="" data-action="zoom">
+                    <img src="{% static "landing/img/portfolio/fullsize/6.jpg" %}" class="img-responsive" alt="" data-action="zoom">
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
-    <!-- <aside class="bg-dark">
-        <div class="container text-center">
-            <div class="call-to-action">
-                <h2>Free Download at Start Bootstrap!</h2>
-                <a href="http://startbootstrap.com/template-overviews/creative/" class="btn btn-default btn-xl sr-button">Download Now!</a>
-            </div>
-        </div>
-    </aside> -->
-
-    <section id="contact">
+    <section id="contact" style="background-color: #f5f5f5">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <h2 class="section-heading">Let's Get In Touch!</h2>
+                    <h2 class="section-heading">联系我们</h2>
                     <hr class="primary">
-                    <p>Ready to start your next project with us? That's great! Give us a call or send us an email and we will get back to you as soon as possible!</p>
+                    <p>欢迎给我们发送邮件，或者通过右下角 Live Chat 给我们发送消息，我们将尽快回复您。</p>
                 </div>
-                <div class="col-lg-4 col-lg-offset-2 text-center">
-                    <i class="fa fa-phone fa-3x sr-contact"></i>
-                    <p>123-456-6789</p>
-                </div>
-                <div class="col-lg-4 text-center">
+                <div class="col-md-12 text-center">
                     <i class="fa fa-envelope-o fa-3x sr-contact"></i>
-                    <p><a href="mailto:your-email@your-domain.com">feedback@startbootstrap.com</a></p>
+                    <p><a href="mailto:hello@dangann.com" target="_blank">hello@dangann.com</a></p>
                 </div>
             </div>
         </div>
@@ -200,7 +194,7 @@
                 <div class="container">
                     <div class="row row-bottom-padded-sm">
                         <div class="col-md-12">
-                            <p class="copyright text-center">© 2017 <a href="crew.html">BreakWire Lab</a>. All Rights Reserved. <br> Free HTML5 Template by <a href="http://freehtml5.co/" target="_blank">FREEHTML5.co</a> | static/images by <a href="http://pexels.com/" target="_blank">Pexels</a> &amp;  <a href="http://unsplash.com/" target="_blank">Unsplash</a></p>
+                            <p class="copyright text-center">© 2017 <a href="crew.html">BreakWire Lab</a>. All Rights Reserved. </p>
                         </div>
                     </div>
                 </div>
@@ -208,7 +202,29 @@
         </div>
     </aside>
 
+    <div class="modal fade" id="wechat-public-account-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body text-center">
+            <img src="{% static "/landing/img/wechat-public-account.jpg" %}" width="200" height="200">
+            <p style="margin-bottom: 0px; margin-top: 20px">扫描二维码</p>
+            <p>关注「单干」微信公众号</p>
+          </div>
+        </div>
+      </div>
+    </div>
 
+    <div class="modal fade" id="wechat-mini-app-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-body text-center">
+            <img src="{% static "/landing/img/wechat-mini-app.jpg" %}" width="200" height="200">
+            <p style="margin-bottom: 0px; margin-top: 20px">扫描二维码</p>
+            <p>使用「单干小雷达」微信小程序</p>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- jQuery -->
     <script src="{% static "landing/js/jquery.min.js" %}"></script>
@@ -216,8 +232,9 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="{% static "landing/js/bootstrap.min.js" %}"></script>
 
-    <script src="{% static "js/transition.min.js" %}"></script>
-    <script src="{% static "js/zoom.min.js" %}"></script>
+    <!-- zoon.js -->
+    <!-- <script src="{% static "js/transition.min.js" %}"></script> -->
+    <!-- <script src="{% static "js/zoom.min.js" %}"></script> -->
 
     <!-- Plugin JavaScript -->
     <script src="{% static "landing/js/scrollreveal.min.js" %}"></script>
@@ -229,6 +246,15 @@
 
     <!-- smalltalk JS -->
     <script src="https://embed.small.chat/T43U9BE22G5CHZUVV2.js" async></script>
+
+    <script>
+        $('#wechat-public-account').on('click', function() {
+          $('#wechat-public-account-modal').modal('show')
+        })
+        $('#wechat-mini-app').on('click', function() {
+          $('#wechat-mini-app-modal').modal('show')
+        })
+    </script>
 
 </body>
 

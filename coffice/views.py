@@ -15,6 +15,7 @@ from coffice.serializers import SpotsDatatableSerializer, CitySpotsListSerialize
 
 
 # HTML views
+# @require_login
 def spots_view(request):
     return render(request, 'coffice/spots.html', {'title': 'spots'})
 
