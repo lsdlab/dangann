@@ -39,6 +39,13 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 
+from os.path import join, dirname
+from dotenv import load_dotenv
+
+dotenv_path = join(dirname(__file__), '.env')
+load_dotenv(dotenv_path)
+
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -47,7 +54,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'dqej_zaj1ulu34$_)u@tdx^mv4fz3vur63gf-6c#)dnq^4&(wd'
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -149,9 +156,9 @@ WSGI_APPLICATION = 'dangann.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dangann_development',
-        'USER': '',
-        'PASSWORD': ''
+        'NAME': os.environ.get("DATABASE_NAME"),
+        'USER': os.environ.get("DATABASE_USER"),
+        'PASSWORD':os.environ.get("DATABASE_PASSWORD")
     }
 }
 
@@ -220,9 +227,9 @@ LOGIN_URL = '/login/'
 
 
 # celery settings
-BROKER_URL = 'redis://localhost:6379/1'
+BROKER_URL =os.environ.get("REDIS_URL")
 # redis result backend
-CELERY_RESULT_BACKEND = 'redis://localhost:6379/1'
+CELERY_RESULT_BACKEND = os.environ.get("REDIS_URL")
 # database result backend, use django-celery-results
 # CELERY_RESULT_BACKEND = 'django-db'
 CELERY_ACCEPT_CONTENT = ['application/json']
@@ -233,15 +240,15 @@ CELERY_TIMEZONE = 'Asia/Shanghai'
 # django-rq settings
 RQ_QUEUES = {
     'default': {
-        'URL': 'redis://localhost:6379/1',
+        'URL': os.environ.get("REDIS_URL"),
         'DEFAULT_TIMEOUT': 300,
     },
     'high': {
-        'URL': 'redis://localhost:6379/1',
+        'URL': os.environ.get("REDIS_URL"),
         'DEFAULT_TIMEOUT': 300,
     },
     'low': {
-        'URL': 'redis://localhost:6379/1',
+        'URL': os.environ.get("REDIS_URL"),
         'DEFAULT_TIMEOUT': 300,
     }
 }
@@ -250,7 +257,7 @@ RQ_QUEUES = {
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://localhost:6379/1",
+        "LOCATION": os.environ.get("REDIS_URL"),
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
