@@ -45,7 +45,7 @@ simplejson==3.10.0
 VerbalExpressions==0.0.1
 shortuuid==0.5.0
 uuid==1.30
-maya==0.1.8
+#maya==0.1.8
 arrow==0.10.0
 pendulum==1.2.0
 timeago==1.0.7
