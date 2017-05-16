@@ -8,8 +8,8 @@ def index(request):
     return render(request, 'landing/index.html')
 
 
-# def index(request):
-#     return render(request, 'coffice/index.html', {'title': 'index'})
+def index_index(request):
+    return render(request, 'coffice/index.html', {'title': 'index'})
 
 
 def submit(request):

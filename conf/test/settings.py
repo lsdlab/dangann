@@ -45,7 +45,6 @@ from dotenv import load_dotenv
 dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
 
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -226,16 +225,16 @@ LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/login/'
 
 
-# celery settings
-BROKER_URL =os.environ.get("REDIS_URL")
-# redis result backend
-CELERY_RESULT_BACKEND = os.environ.get("REDIS_URL")
-# database result backend, use django-celery-results
-# CELERY_RESULT_BACKEND = 'django-db'
-CELERY_ACCEPT_CONTENT = ['application/json']
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_SERIALIZER = 'json'
-CELERY_TIMEZONE = 'Asia/Shanghai'
+# # celery settings
+# BROKER_URL =os.environ.get("REDIS_URL")
+# # redis result backend
+# CELERY_RESULT_BACKEND = os.environ.get("REDIS_URL")
+# # database result backend, use django-celery-results
+# # CELERY_RESULT_BACKEND = 'django-db'
+# CELERY_ACCEPT_CONTENT = ['application/json']
+# CELERY_TASK_SERIALIZER = 'json'
+# CELERY_RESULT_SERIALIZER = 'json'
+# CELERY_TIMEZONE = 'Asia/Shanghai'
 
 # django-rq settings
 RQ_QUEUES = {

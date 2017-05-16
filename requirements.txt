@@ -29,10 +29,10 @@ django-redis==4.7.0
 redis==2.10.5
 
 # job queues and job scheduling
-celery==4.0.2
-django-celery-beat==1.0.1
-django-celery-results==1.0.1
-flower==0.9.1
+#celery==4.0.2
+#django-celery-beat==1.0.1
+#django-celery-results==1.0.1
+#flower==0.9.1
 django-crontab==0.7.1
 django-rq==0.9.5
 

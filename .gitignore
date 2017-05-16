@@ -91,4 +91,5 @@ target/
 
 
 media/
-conf/production/
+conf/production/.env
+

@@ -3,18 +3,20 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <a class="navbar-brand ml20" href="/">
-    <span class="mr5"><i class="fa fa-coffee" aria-hidden="true" style=""></i></span> dangann.com
+    <span class="mr5"><i class="fa fa-coffee" aria-hidden="true" style=""></i></span> 单干 - 自由职业者社区
   </a>
 
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
       <li {% if title == 'articles' %} class="nav-item active" {% else %} class="nav-item" {% endif %}>
-        <a href="/articles/" class="nav-link">Articles</a>
+        <a href="/articles/" class="nav-link">文章</a>
+      </li>
+      <li {% if title == 'forum' %} class="nav-item active" {% else %} class="nav-item" {% endif %}>
+        <a href="/forum/" class="nav-link">论坛</a>
       </li>
       <li {% if title == 'submit' %} class="nav-item active" {% else %} class="nav-item" {% endif %}>
-        <a href="/submit/" class="nav-link">Submit</a>
-      </li>219
-
+        <a href="/submit/" class="nav-link">提交</a>
+      </li>
       <li {% if title == 'faq' %} class="nav-item active" {% else %} class="nav-item" {% endif %}>
         <a href="/faq/" class="nav-link">FAQ</a>
       </li>

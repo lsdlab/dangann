@@ -17,7 +17,7 @@
     (c) Copyright BreakWire Lab 2017 All Rights Reserved
     ---------------------------------------------------------------------------
     File Name    : settings.py
-    Description  : development settings.py
+    Description  : production settings.py
     Author       : Chen Jian
     Gmail        : lsdvincent@gmail.com
     GitHub       : http://github.com/lsdlab/dangann
@@ -39,15 +39,22 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 
+# setup dotenv
+from os.path import join, dirname
+from dotenv import load_dotenv
+
+dotenv_path = join(dirname(__file__), '.env')
+load_dotenv(dotenv_path)
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'dqej_zaj1ulu34$_)u@tdx^mv4fz3vur63gf-6c#)dnq^4&(wd'
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -58,7 +65,6 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'flat_responsive',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -71,8 +77,6 @@ INSTALLED_APPS = [
     'captcha',
     'imagekit',
     'rest_framework',
-    'django_extensions',
-    'debug_toolbar',
     'django_rq',
     'django_celery_beat',
     'django_celery_results',
@@ -100,34 +104,14 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
-
-
-DEBUG_TOOLBAR_PANELS = [
-    'debug_toolbar.panels.versions.VersionsPanel',
-    'debug_toolbar.panels.timer.TimerPanel',
-    'debug_toolbar.panels.settings.SettingsPanel',
-    'debug_toolbar.panels.headers.HeadersPanel',
-    'debug_toolbar.panels.request.RequestPanel',
-    'debug_toolbar.panels.sql.SQLPanel',
-    'debug_toolbar.panels.staticfiles.StaticFilesPanel',
-    'debug_toolbar.panels.templates.TemplatesPanel',
-    'debug_toolbar.panels.cache.CachePanel',
-    'debug_toolbar.panels.signals.SignalsPanel',
-    'debug_toolbar.panels.logging.LoggingPanel',
-    'debug_toolbar.panels.redirects.RedirectsPanel',
-]
-INTERNAL_IPS = ('0.0.0.0')
-DEBUG_TOOLBAR_CONFIG = {  'JQUERY_URL' : r"http://code.jquery.com/jquery-2.1.1.min.js"}
-
 
 ROOT_URLCONF = 'dangann.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -149,9 +133,9 @@ WSGI_APPLICATION = 'dangann.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dangann_development',
-        'USER': '',
-        'PASSWORD': ''
+        'NAME': os.environ.get("DATABASE_NAME"),
+        'USER': os.environ.get("DATABASE_USER"),
+        'PASSWORD':os.environ.get("DATABASE_PASSWORD")
     }
 }
 
@@ -220,9 +204,9 @@ LOGIN_URL = '/login/'
 
 
 # # celery settings
-# BROKER_URL = 'redis://localhost:6379/1'
+# BROKER_URL = os.environ.get("REDIS_URL")
 # # redis result backend
-# CELERY_RESULT_BACKEND = 'redis://localhost:6379/1'
+# CELERY_RESULT_BACKEND = os.environ.get("REDIS_URL")
 # # database result backend, use django-celery-results
 # # CELERY_RESULT_BACKEND = 'django-db'
 # CELERY_ACCEPT_CONTENT = ['application/json']
@@ -233,15 +217,15 @@ LOGIN_URL = '/login/'
 # django-rq settings
 RQ_QUEUES = {
     'default': {
-        'URL': 'redis://localhost:6379/1',
+        'URL': os.environ.get("REDIS_URL"),
         'DEFAULT_TIMEOUT': 300,
     },
     'high': {
-        'URL': 'redis://localhost:6379/1',
+        'URL': os.environ.get("REDIS_URL"),
         'DEFAULT_TIMEOUT': 300,
     },
     'low': {
-        'URL': 'redis://localhost:6379/1',
+        'URL': os.environ.get("REDIS_URL"),
         'DEFAULT_TIMEOUT': 300,
     }
 }
@@ -250,7 +234,7 @@ RQ_QUEUES = {
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://localhost:6379/1",
+        "LOCATION": os.environ.get("REDIS_URL"),
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }

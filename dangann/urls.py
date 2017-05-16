@@ -26,6 +26,7 @@ urlpatterns = [
     url(r'^', include('user.urls')),
     url(r'^captcha/', include('captcha.urls')),
     url(r'^$', views.index, name='index'),
+    url(r'^index_index/', views.index_index, name='index_index'),
     url(r'^', include('coffice.urls')),
     url(r'^', include('articles.urls')),
     url(r'^submit/', views.submit, name='submit'),
