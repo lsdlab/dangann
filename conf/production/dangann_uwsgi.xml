@@ -1,7 +1,7 @@
 <uwsgi>
-    <socket>0.0.0.0:8001</socket>
-    <chdir>/home/root/dangann/dangann</chdir>
+    <socket>45.33.39.45:8001</socket>
+    <chdir>/root/dangann/dangann</chdir>
     <module>wsgi</module>
     <processes>4</processes>
-    <daemonize>/home/root/dangann_logs/uwsgi.log</daemonize>
+    <daemonize>/root/dangann_logs/uwsgi.log</daemonize>
 </uwsgi>
