@@ -31,6 +31,8 @@ class User(AbstractUser):
 
     weixin_nickName = models.CharField(max_length=50, null=True, blank=True)
     weixin_avatarUrl = models.URLField(max_length=200, null=True, blank=True)
+    open_mark = models.BooleanField(default=True)
+    weixin = models.CharField(max_length=50, null=True, blank=True)
 
     def __str__(self):
         return self.email

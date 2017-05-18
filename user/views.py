@@ -193,3 +193,22 @@ def create_weixin_user(request):
         user.save()
         serializer = UserSerializer(user)
         return Response(serializer.data)
+
+
+@api_view(['POST'])
+def update_weixin_user(request, pk):
+    if request.method == 'POST':
+        user = User.objects.get(id=pk)
+        if user:
+            user.location = request.POST.get('location')
+            user.bio = request.POST.get('bio')
+            user.weixin = request.POST.get('weixin')
+            if request.POST.get('open_mark') == '1':
+                user.open_mark = True
+            else:
+                user.open_mark = False
+            user.save()
+            serializer = UserSerializer(user)
+            return Response(serializer.data)
+        else:
+            return JsonResponse({})

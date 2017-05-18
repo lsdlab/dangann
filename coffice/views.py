@@ -4,12 +4,13 @@ from django.http import JsonResponse
 import simplejson
 from random import randint
 
-from .models import Spot, Comment
+from coffice.models import Spot, Comment
 from user.models import User
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from coffice.serializers import SpotsDatatableSerializer, CitySpotsListSerializer, SpotsSerializer, CommentSerializer
+from coffice.serializers import SpotsDatatableSerializer, CitySpotsListSerializer, CitySpotsListForMapSerializer, SpotsSerializer, CommentSerializer, CommentSampleSerializer
+from user.serializers import UserSerializer
 
 # Create your views here.
 
@@ -26,6 +27,14 @@ def city_spot_list(request, city):
     if request.method == 'GET':
         city_spot_list = Spot.objects.filter(city=city).order_by('-id')
         serializer = CitySpotsListSerializer(city_spot_list, many=True)
+        return Response(serializer.data)
+
+
+@api_view(['GET'])
+def city_spot_list_for_map(request, city):
+    if request.method == 'GET':
+        city_spot_list = Spot.objects.filter(city=city).order_by('-id')
+        serializer = CitySpotsListForMapSerializer(city_spot_list, many=True)
         return Response(serializer.data)
 
 
@@ -105,7 +114,7 @@ def all_user_comment_list(request, pk):
 @api_view(['GET', 'POST'])
 def comments(request):
     if request.method == 'GET':
-        comments = Comments.objects.all().order_by('-id')
+        comments = Comment.objects.all().order_by('-id')
         serializer = CommentSerializer(comments, many=True)
         return Response(serializer.data)
     elif request.method == 'POST':
@@ -114,10 +123,19 @@ def comments(request):
                     comment_user_id = request.POST.get('comment_user_id'),
                     comment_user_name = request.POST.get('comment_user_name'),
                     comment_user_avatarurl = request.POST.get('comment_user_avatarurl'),
-                    comment_mark = request.POST.get('comment_mark'))
+                    comment_mark = request.POST.get('comment_mark'),
+                    city = request.POST.get('spot_city'))
         comment.save()
         serializer = CommentSerializer(comment)
         return Response(serializer.data)
+
+@api_view(['GET', 'POST'])
+def latest_comments(request):
+    if request.method == 'GET':
+        comments = Comment.objects.all().order_by('-id')[:6]
+        serializer = CommentSerializer(comments, many=True)
+        return Response(serializer.data)
+
 
 
 @api_view(['GET'])
@@ -134,7 +152,7 @@ def user_spot_list(request, pk):
     if request.method == 'GET':
         user = User.objects.get(pk=pk)
         user_spot_list = user.spot_set.all().order_by('-id')[:5]
-        serializer = CommentSerializer(user_spot_list, many=True)
+        serializer = SpotsSerializer(user_spot_list, many=True)
         return Response(serializer.data)
 
 
@@ -170,5 +188,24 @@ def random_spots(request):
         serializer = SpotsSerializer(spots, many=True)
         return Response(serializer.data)
 
+@api_view(['GET'])
+def city_users(request, city):
+    comment_list = Comment.objects.filter(city=city)
+    if comment_list:
+        user_id_list = [i.id for i in comment_list]
+        user_list = User.objects.filter(id__in=user_id_list)
+    else:
+        user_list = User.objects.none()
+    serializer = UserSerializer(user_list, many=True)
+    return Response(serializer.data)
 
-
+@api_view(['GET'])
+def spot_users(request, pk):
+    comment_list = Comment.objects.filter(spot_id=pk)
+    if comment_list:
+        user_id_list = [i.id for i in comment_list]
+        user_list = User.objects.filter(id__in=user_id_list)
+    else:
+        user_list = User.objects.none()
+    serializer = UserSerializer(user_list, many=True)
+    return Response(serializer.data)

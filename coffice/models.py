@@ -28,6 +28,7 @@ class Spot(models.Model):
 
 class Comment(models.Model):
   spot = models.ForeignKey('coffice.spot', on_delete=models.CASCADE)
+  city = models.CharField(max_length=70)
   comment_message = models.CharField(max_length=140, default='', null=True, blank=True)
   comment_user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
   comment_user_name = models.CharField(max_length=70, default='', null=True, blank=True)

@@ -1,10 +1,8 @@
 from django.conf.urls import url
 
-from . import views
+from user import views
 
 from rest_framework import routers
-from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
-
 
 router = routers.DefaultRouter()
 
@@ -21,4 +19,5 @@ urlpatterns = [
     url(r'^api/v1/users/(?P<pk>[0-9]+)/$', views.user_detail, name='user_detail'),
     url(r'^api/v1/check_user/(?P<nickname>\w+)/$', views.check_user, name='check_user'),
     url(r'^api/v1/create_weixin_user/$', views.create_weixin_user, name='create_weixin_user'),
+    url(r'^api/v1/update_weixin_user/(?P<pk>[0-9]+)/$', views.update_weixin_user, name='update_weixin_user'),
 ]

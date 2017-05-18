@@ -1,4 +1,4 @@
-from .models import Spot, Comment
+from coffice.models import Spot, Comment
 
 from rest_framework import serializers
 
@@ -17,7 +17,13 @@ class SpotsDatatableSerializer(serializers.ModelSerializer):
 class CitySpotsListSerializer(serializers.ModelSerializer):
     class Meta:
         model = Spot
-        fields = ('id', 'city', 'name', 'commit_user_name', 'commit_message')
+        fields = ('id', 'city', 'name', 'commit_user_name', 'commit_message', 'latitude', 'longitude')
+
+
+class CitySpotsListForMapSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Spot
+        fields = ('id', 'latitude', 'longitude')
 
 
 class SpotsSerializer(serializers.ModelSerializer):
@@ -30,6 +36,17 @@ class SpotsSerializer(serializers.ModelSerializer):
 
 class CommentSerializer(serializers.ModelSerializer):
     comment_date = serializers.DateTimeField(format="%Y-%m-%d")
+    spot_name = serializers.ReadOnlyField(source='spot.name')
+    spot_city = serializers.ReadOnlyField(source='spot.city')
     class Meta:
         model = Comment
-        fields = ('id', 'comment_message', 'comment_user_name', 'comment_user_avatarurl', 'comment_date', 'spot_id', 'comment_user_id', 'comment_mark')
+        fields = ('id', 'comment_message', 'comment_user_name', 'comment_user_avatarurl', 'comment_date', 'spot_id', 'comment_user_id', 'comment_mark', 'spot_name', 'spot_city')
+
+
+class CommentSampleSerializer(serializers.ModelSerializer):
+    comment_date = serializers.DateTimeField(format="%Y-%m-%d")
+    spot_name = serializers.ReadOnlyField(source='spot.name')
+    spot_city = serializers.ReadOnlyField(source='spot.city')
+    class Meta:
+        model = Comment
+        fields = ('id', 'comment_message', 'comment_mark', 'comment_date', 'spot_name', 'spot_city')
