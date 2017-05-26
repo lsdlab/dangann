@@ -5,7 +5,6 @@ from . import views
 from rest_framework import routers
 from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
 
-
 router = routers.DefaultRouter()
 
 
