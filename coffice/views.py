@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from django.core import serializers
 from django.http import JsonResponse
-import simplejson
+from urllib import unquote
 from random import randint
+
 
 from coffice.models import Spot, Comment
 from user.models import User
@@ -24,6 +25,7 @@ def spots_view(request):
 # API views
 @api_view(['GET'])
 def city_spot_list(request, city):
+    city = unquote(city)
     if request.method == 'GET':
         city_spot_list = Spot.objects.filter(city=city).order_by('-id')
         serializer = CitySpotsListSerializer(city_spot_list, many=True)
@@ -32,6 +34,7 @@ def city_spot_list(request, city):
 
 @api_view(['GET'])
 def city_spot_list_for_map(request, city):
+    city = unquote(city)
     if request.method == 'GET':
         city_spot_list = Spot.objects.filter(city=city).order_by('-id')
         serializer = CitySpotsListForMapSerializer(city_spot_list, many=True)
@@ -190,6 +193,7 @@ def random_spots(request):
 
 @api_view(['GET'])
 def city_users(request, city):
+    city = unquote(city)
     comment_list = Comment.objects.filter(city=city)
     if comment_list:
         user_id_list = [i.id for i in comment_list]
