@@ -6,6 +6,7 @@ from django.utils import timezone
 
 class Spot(models.Model):
   city = models.CharField(max_length=70)
+  city_pinyin = models.CharField(max_length=70)
   name = models.CharField(max_length=70)
   longitude = models.FloatField()
   latitude = models.FloatField()
