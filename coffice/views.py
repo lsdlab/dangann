@@ -34,7 +34,7 @@ def city_spot_list(request, city):
 
 @api_view(['GET'])
 def city_spot_list_for_map(request, city):
-    city = urllib.parse.unquote(city)
+    # city = urllib.parse.unquote(city)
     if request.method == 'GET':
         city_spot_list = Spot.objects.filter(city=city).order_by('-id')
         serializer = CitySpotsListForMapSerializer(city_spot_list, many=True)
