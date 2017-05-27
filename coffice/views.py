@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.core import serializers
 from django.http import JsonResponse
-from urllib import unquote
+import urllib.parse
 from random import randint
 
 
@@ -25,7 +25,7 @@ def spots_view(request):
 # API views
 @api_view(['GET'])
 def city_spot_list(request, city):
-    city = unquote(city)
+    city = urllib.parse.unquote(city)
     if request.method == 'GET':
         city_spot_list = Spot.objects.filter(city=city).order_by('-id')
         serializer = CitySpotsListSerializer(city_spot_list, many=True)
@@ -34,7 +34,7 @@ def city_spot_list(request, city):
 
 @api_view(['GET'])
 def city_spot_list_for_map(request, city):
-    city = unquote(city)
+    city = urllib.parse.unquote(city)
     if request.method == 'GET':
         city_spot_list = Spot.objects.filter(city=city).order_by('-id')
         serializer = CitySpotsListForMapSerializer(city_spot_list, many=True)
@@ -193,7 +193,7 @@ def random_spots(request):
 
 @api_view(['GET'])
 def city_users(request, city):
-    city = unquote(city)
+    city = urllib.parse.unquote(city)
     comment_list = Comment.objects.filter(city=city)
     if comment_list:
         user_id_list = [i.id for i in comment_list]
