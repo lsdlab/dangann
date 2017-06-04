@@ -164,7 +164,7 @@ def all_user_spot_list(request, pk):
     if request.method == 'GET':
         user = User.objects.get(pk=pk)
         all_user_spot_list = user.spot_set.all().order_by('-id')
-        serializer = CommentSerializer(all_user_spot_list, many=True)
+        serializer = SpotsSerializer(all_user_spot_list, many=True)
         return Response(serializer.data)
 
 

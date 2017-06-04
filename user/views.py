@@ -188,7 +188,8 @@ def create_weixin_user(request):
     if request.method == 'POST':
         user = User(email=request.POST.get('weixin_nickName') + "@weixinclient.com",
             weixin_nickName=request.POST.get('weixin_nickName'),
-            weixin_avatarUrl=request.POST.get('weixin_avatarUrl'))
+            weixin_avatarUrl=request.POST.get('weixin_avatarUrl'),
+            client_mark=request.POST.get('client_mark'))
         user.set_password(request.POST.get('email'))
         user.save()
         serializer = UserSerializer(user)
