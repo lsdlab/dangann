@@ -94,7 +94,8 @@ REST_FRAMEWORK = {
     #     'rest_framework.authentication.BasicAuthentication',
     #     'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
     # ),
-    'PAGE_SIZE': 200
+    'PAGE_SIZE': 200,
+    'DATETIME_FORMAT': "%Y-%m-%d",
 }
 
 JWT_AUTH = {
@@ -201,13 +202,13 @@ PASSWORD_HASHERS = [
 
 LANGUAGE_CODE = 'zh-hans'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
